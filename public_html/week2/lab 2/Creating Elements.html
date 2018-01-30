@@ -1,20 +1,37 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!doctype html>
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-        <script>
+<head>
+<meta charset="utf-8">
+<title>Latoya White week 2 LAB Creating Elments</title>
+</head>
+<style>
+	.border{border:5px solid blueviolet;}
+</style>
+<body>
+</body>
+<script>
+	var student =[
+		{first:"Latoya", last:"White", credit:"NEIT Current Student ID Number #45"},
+		{first:"John", last:"Smith", credit: "NEIT Current Student ID Number #52"},
+                {first:"Jane", last:"Doe", credit: "NEIT Current Student Number #96"},
         
+    ];
+    for (let info in student) {
+        let tempDiv = document.createElement("div");
         
+        for(let i in student[info]){
+        let tempP = document.createElement("p");
+        let node = document.createTextNode(student[info][i]);             
+           
+        tempP.appendChild(node);
+        tempDiv.appendChild(tempP);
+        
+        }   
+        tempDiv.classList.add("border");
+        tempDiv.setAttribute("id", info);
+        document.body.appendChild(tempDiv);    
+    } 
+   
         </script>
     </body>
 </html>

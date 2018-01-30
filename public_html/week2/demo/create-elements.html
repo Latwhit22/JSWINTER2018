@@ -13,10 +13,7 @@
             let textnode = document.createTextNode('Water');
             p.appendChild(textnode)
              p.setAttribute("id", 'customID');
-            /* Different behavior, Browser moves the element p from the body to the element
-             * unless we clone it .cloneNode(true)
-             */
-                        
+                                   
             document.body.appendChild(p)
 
             let div = document.querySelector('div')
