@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<!--
-Personal notes for the this Assignment
--->
 <html>
     <head>
-        <title>Latoya White Lab 3 Event Handler</title>
+        <title>Latoya White</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .error{
+                color:blue;
+            }
+        </style>
     </head>
     <body>
-        <div class="error">Latoya White Lab 3 Event Handler</div>
-        <label>input information</label> <input type="text" name="words" />
-        <br />
-        <input type="button" name="add" value="Submit" /> 
-        <button>Input text</button>;
+
+        <label>text</label> <input name="fullname" type="text" />
+
+        <span>
+         
+        </span>
+        <p>
+           enter some text in this P tag
+
+        </p>
+        <input type="button" name="add" value="Add Text" />
+        <input type="button" name="color" value="Change Color" />
+        <input type="button" name="decoration" value="Change decoration" />
+        <input type="button" name="upper" value="Change text to uppercase" />
+
         <script>
-
-
-            var div = document.querySelector('.error');
-
-            document.querySelector('button').addEventListener('click', clickME);
-
-            // Add a paramter called 'e' or 'event'
-            function clickME() {
-
-                // Output to the console the paramter
-                div.classList.add('big');
-                div.style.backgroundColor = 'blue'
-            }
-
         </script>
-        <div>Display input text</div>
     </body>
 </html>
