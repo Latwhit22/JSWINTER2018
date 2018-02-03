@@ -7,45 +7,114 @@
     </head>
     <body>
         <div>TODO write content</div>
-        
-        <script type="text/javascript">
-            
-            /* an array with array values
-             * 
-             */
-            var myvar = [   ['d'],
-                            ['4','h'],
-                            ['g','k','l']
-                        ];
-            
-            console.log(myvar);
-            
-            /*
-             * To loop through you need to use two for loops
-             * think of it as a table with rows, then the iems in
-             * the row
-             */
-            var row;
-            for ( var i = 0; i < myvar.length; i ++ ){
-                row = myvar[i];
-                
-                for ( var j = 0; j < row.length; j++ ) {
-                    /*
-                     * inside the inner loop you can add your logic
-                     * here
-                     */
-                    if ( row[j] === 'k' ) {
-                       
-                      console.log('item is equal to k'); 
-                       continue;
-                    } 
-                    console.log(row[j]);
-                    
-                }
-                
-                
+        <script>
+           $(document).ready(function () {
+
+        $("#exit").on('click', function () {
+            // Hide sideNav
+            $('.button-collapse').sideNav('hide');
+        });
+
+        // Modal Initialization
+        $('.modal-trigger').leanModal();
+        // Side-nav on mobile Initialization
+        $(".button-collapse").sideNav();
+        // Accordian Initialization
+        $('.collapsible').collapsible({
+            accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });
+
+
+
+        average = document.getElementById('average');
+        var button = document.getElementById('gridSize');
+        button.onclick = function(e) {
+            result = document.getElementById('result');
+            num = parseInt(document.getElementById('myNo').value);
+            alert(num); // displays the number in pop-up box
+            // if num is not a number
+            if(isNaN(num) ) {
+                alert("No Beuno!");
             }
-            
-        </script>
+            else {
+                result.innerHTML = num; // passes the result into the var num
+            }
+
+            var sum = 0;
+            var totalAverage = 0;
+
+            // variable string for Average of all cell's
+            var avgStr;
+
+
+            // creates a string var that holds the table
+            var str = "<table  class='bordered centered' border='1'>";
+            for (row = 0; row < num; row++) {
+                str += "<tr>";
+
+
+                for (col = 0; col < num; col++) {
+
+                    // creates a random number from 1-100
+                    var randNum = Math.floor(Math.random() * 100) + 1;
+
+                    // creates an Array of each random number used in grid
+                    var numArray = [randNum];
+
+                    str += "<td";  // leaves the string td tag open for different styling
+
+                    // if a random num is a multiple of 3
+                    if (randNum%3 === 0) {
+                        // make cell have red background
+                        str +=  ' style="background-color: #c62828; color: white;  -moz-box-shadow: inset 0 0 10px #ffffff; -webkit-box-shadow: inset 0 0 10px #ffffff;box-shadow: inset 0 0 10px #ffffff;">';
+
+                    }
+                    // if a random number is a multiple of 2
+                    else if (randNum%2 === 0) {
+                        // make cell have blue background
+                        str += ' style="background-color: #1a237e ; color: white; -moz-box-shadow: inset 0 0 10px #ffffff; -webkit-box-shadow: inset 0 0 10px #ffffff;box-shadow: inset 0 0 10px #ffffff;">';
+
+                    }
+                    else if (randNum%2 != 0&& randNum%3 != 0) {
+                        str += ' style="background-color: white ; color: black; -moz-box-shadow: inset 0 0 12px #bdbdbd; -webkit-box-shadow: inset 0 0 12px #bdbdbd;box-shadow: inset 0 0 12px #bdbdbd;">';
+                    }
+                    else {
+                        str += ">";
+                    }
+
+                    for (var i=0; i <numArray.length; i++) {
+                        sum += numArray[i];
+
+                    }
+
+                    totalAverage = (sum/(num*num));
+
+                    str += randNum + "</td>";
+                }
+                str += "</tr>";
+            }
+            str += "</table>";
+
+            result.innerHTML = str; // displays the table
+
+            /* Displays the average of all cell's */
+            avgStr = "<div class='row'>";
+            avgStr += "<div class='col s10 offset-s1 col m8 offset-m2 col l6 offset-l3'>";
+            avgStr += "<div class='card-panel hoverable grey darken-3 lighten-5 z-depth-4'>";
+            avgStr += "<div class='row valign-wrapper'>";
+            avgStr += "<div class='col s2'>";
+            avgStr += "<img src='https://cdn2.iconfinder.com/data/icons/strategy-3/100/strategy-tactic-05-512.png' alt='average icon' height='50' width='50' class='circle'></div>";
+            avgStr += "<div class='col s8 offset-s1'>";
+            avgStr += "<span class='white-text'>The Average of all the cells is ";
+            avgStr += totalAverage;
+            avgStr += "</span>";
+            avgStr += "</div></div></div></div></div>";
+
+            gridAverage.innerHTML = (avgStr); // string concatenation into gridAverage div
+
+        }
+
+    });
+       </script>
     </body>
 </html>
