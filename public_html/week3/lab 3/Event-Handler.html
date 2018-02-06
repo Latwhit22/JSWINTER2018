@@ -5,28 +5,71 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+          
+            body{
+                background-color:darkkhaki; 
+                text-align: center;
+            }
             .error{
                 color:blue;
             }
         </style>
+        
     </head>
     <body>
 
-        <label>text</label> <input name="fullname" type="text" />
-
+        <label>Enter Full Name</label> <input name="fullname" type="text" />
+<input type="button" name="error" value="Submit" />
         <span>
          
         </span>
         <p>
-           enter some text in this P tag
+           enter some text in this P tag this will be the dummy text...
 
         </p>
-        <input type="button" name="add" value="Add Text" />
+        
         <input type="button" name="color" value="Change Color" />
-        <input type="button" name="decoration" value="Change decoration" />
+        <input type="button" name="text-decoration" value="Change decoration" />
         <input type="button" name="upper" value="Change text to uppercase" />
-
+        
         <script>
+            let name = document.querySelector('input[name="fullname"]')
+            let span = document.querySelector('span')
+            let p = document.querySelector('p')
+            let submitbtn = document.querySelector('input[name="error"]')
+            
+            let color = document.querySelector('input[name="color"]')
+            let textDecoration = document.querySelector('input[name="text-decoration"]')
+            let upperCase = document.querySelector('input[name="upper"]')
+            
+   function changeColor(){
+       p.style.color = 'green';
+   }
+     color.addEventListener("click",changeColor) 
+     
+     
+   function changeTextDecoration(){
+       p.style.textDecoration = 'green wavy underline';
+   }
+     textDecoration.addEventListener("click",changeTextDecoration)   
+     
+     
+       
+    function changeUpperCase(){
+       p.style.textTransform = 'uppercase';
+   }
+     upperCase.addEventListener("click",changeUpperCase) 
+        
+     
+     function validate(){
+         if (name.value.length < 5){
+          span.innerHTML = 'Name must have a minimum length of 5 characters'   
+         } 
+         else{
+          span.innerHTML = ''      
+         }
+     }
+      submitbtn.addEventListener("click",validate)
         </script>
     </body>
 </html>
