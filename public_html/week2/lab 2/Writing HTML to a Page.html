@@ -1,13 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>Latoya White Lab 2 Writing HTML to PAGE</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <script>
-       
+<head>
+<meta charset="utf-8">
+<style>
+.border{border:5px solid blueviolet;}
+</style>
+<title>Latoya White week 2 LAB Creating Elments</title>
+</head>
+
+<body>
+
+<script>
+	var student =[
+		{first:"Latoya", last:"White", ID:"NEIT Current Student ID Number #45"},
+		{first:"John", last:"Smith", ID: "NEIT Current Student ID Number #52"},
+                {first:"Jane", last:"Doe", ID: "NEIT Current Student Number #96"},
+        
+    ];
+    for (let info in student) {
+        let tempDiv = document.createElement("div");
+        
+        for(let i in student[info]){
+        let tempP = document.createElement("p");
+        let node = document.createTextNode(student[info][i]);             
+           
+        tempP.appendChild(node);
+        tempDiv.appendChild(tempP);
+        }   
+        tempDiv.classList.add("border");
+        tempDiv.setAttribute("id", info);
+        document.body.appendChild(tempDiv);    
+    } 
+    let body = document.querySelector('body')
+            let str="";
+            for (var i = 0; i < student.length; i++){
+                str += "<div id='" + i + "' class='border'>";
+                str += "<p>";
+                str += student[i].first;
+                str += "</p>";
+                str += "<p>";
+                str += student[i].last;
+                str += "</p>";
+                str += "<p>";
+                str += student[i].id;
+                str += "</p>";
+                str +="</div>";
+            }
+            body.innerHTML = str;
         </script>
     </body>
 </html>

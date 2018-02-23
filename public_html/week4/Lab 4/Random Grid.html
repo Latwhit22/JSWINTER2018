@@ -1,30 +1,69 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Latoya White</title>
+        <title>Latoya White Random Grid </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .red{
+                background-color:pink;
+            }
+            .blue{
+                background-color:lightgray;
+            }
+            
+        </style>
+        
     </head>
     <body>
-        <input type="text" name="amount">
-        <button>Generate Grid</button>
+        <input type="text" name="amount" id="input_user">
+        <button>Create Grid</button>
+        <div></div>
+        Grid Average:<span id="span"> 0</span>
 
         <script>
-            let grid = document.querySelector('input[name="amount"]');
-            document.quertySelector('button').addEventListener('click', randomNumber());
+            let textbox = document.querySelector('#input_user');
+            let totalAverages = document.querySelector('#span');
+            document.querySelector('button').addEventListener('click', createGrid);
             
-            var str="";
-             }
+            
+            function createGrid() {
+                var grid = [];
+                var str = '';
+                var num = 0;
+                var average = 0;
+                str += '<table border="4">';
+                
+                for (let row = 0; row < textbox.value; row++) {
+                    grid[row] = [];
+                    str += '<tr>'
+                    
+        for (let col = 0; col < textbox.value; col++) {
+            grid[row][col] = randomNumber();
+            num = num + randomNumber();
+
+            if (grid[row][col] % 2 == 0) {
+                str += `<td class="blue">${grid[row][col]}</td>`;
+
+            } else if (grid[row][col] % 3 == 0) {
+                str += `<td class="red">${grid[row][col]}</td>`;
+
+            } else {
+                str += `<td>${grid[row][col]}</td>`;
+            }
+        }
+        str += '</tr>'
+                }
+                str += '</table>';
+                average = num / (textbox.value * textbox.value);
+                totalAverages.innerHTML = average;
+                document.querySelector('div').innerHTML = str;
+            }
             function randomNumber(min, max) {
+                min = 1;
+                max = 100;
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
-            str += '<table border="1">';
-            for(let row = 0; row < grid.value; row++){
-                items[row] = [];
-                str += '<tr>';
-                for(let col = 0; col < grid.value; col++){
-                }
-           
         </script>
     </body>
 </html>
