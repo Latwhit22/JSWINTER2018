@@ -5,7 +5,7 @@
 <style>
 .border{border:5px solid blueviolet;}
 </style>
-<title>Latoya White week 2 LAB Creating Elments</title>
+<title>Latoya White week 2 LAB Creating Elements</title>
 </head>
 
 <body>
@@ -17,20 +17,6 @@
                 {first:"Jane", last:"Doe", ID: "NEIT Current Student Number #96"},
         
     ];
-    for (let info in student) {
-        let tempDiv = document.createElement("div");
-        
-        for(let i in student[info]){
-        let tempP = document.createElement("p");
-        let node = document.createTextNode(student[info][i]);             
-           
-        tempP.appendChild(node);
-        tempDiv.appendChild(tempP);
-        }   
-        tempDiv.classList.add("border");
-        tempDiv.setAttribute("id", info);
-        document.body.appendChild(tempDiv);    
-    } 
     let body = document.querySelector('body')
             let str="";
             for (var i = 0; i < student.length; i++){
@@ -42,7 +28,7 @@
                 str += student[i].last;
                 str += "</p>";
                 str += "<p>";
-                str += student[i].id;
+                str += student[i].ID;
                 str += "</p>";
                 str +="</div>";
             }
