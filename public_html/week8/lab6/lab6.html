@@ -1,32 +1,54 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Lab 6</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
-        <script>
-            var info = document.querySelector('div');
-            var myRequest = 'users.json'
-            var data = {}
-            
-            fetch(myRequest)
-            .then(function(response) {              
-                  return response.json()               
-            })
-            .then(function(json) { 
-                // make sure all your work goes inside this//
-                console.log(json)
-            })
-           
+        <div></div>
 
+        <script>
+            
+            var content = document.querySelector('div');
+            var myRequest = 'users.json';
+            var data = {};
+            
+                            fetch(myRequest).then(handleResponse)
+                            .then(responseSuccess)
+                            .catch(responseError);
+    
+            function handleResponse(response) {
+                console.log(response);
+                let contentType = response.headers.get("content-type");
+               
+                            if(contentType && contentType.includes("json")) {
+                              return response.json();
+                            }
+                            throw new TypeError("Json error");
+                        }
+            function responseSuccess(json) {
+                let html = 'data';
+                data = json;
+                html += `<b>Username       Email       Registered      isActive</b>`;
+                        for ( let index in data) {
+                            let formattedDate = new Date(data[index].registered).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' });
+                            html += `<hr>`;
+                            html += `<div data-index="${index}">`;
+                            html += ` ${data[index].username} `
+                            html += ` <a href="mailto:${data[index].email}">${data[index].email}</a> `
+                            html += ` ${formattedDate} `
+                            html += ` ${data[index].isActive} `
+                            html += `</div>`
+                }
+                content.innerHTML = html;
+                function responseError(error) {
+                content.innerHTML = error;
+            }
+            }
+           
         </script>
     </body>
 </html>
