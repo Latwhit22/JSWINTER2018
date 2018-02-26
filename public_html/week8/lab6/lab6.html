@@ -9,7 +9,6 @@
     </head>
     <body>
         <div></div>
-
         <script>
             
             var content = document.querySelector('div');
@@ -30,9 +29,9 @@
                             throw new TypeError("Json error");
                         }
             function responseSuccess(json) {
-                let html = 'data';
+                let html = 'Data'; 
                 data = json;
-                html += `<b>Username       Email       Registered      isActive</b>`;
+                html += `<b> Username       Email       Registered      is Active</b>`;
                         for ( let index in data) {
                             let formattedDate = new Date(data[index].registered).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' });
                             html += `<hr>`;
