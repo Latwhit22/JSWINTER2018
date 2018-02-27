@@ -4,36 +4,49 @@
         <title>Lab 6</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        </style>
+       
+       <style>
+
+</style>
     </head>
     <body>
         <div></div>
         <script>
-            
+
             var content = document.querySelector('div');
             var myRequest = 'users.json';
             var data = {};
-            
-                            fetch(myRequest).then(handleResponse)
-                            .then(responseSuccess)
-                            .catch(responseError);
-    
+
+            fetch(myRequest).then(handleResponse)
+                    .then(responseSuccess)
+                    .catch(responseError);
+
             function handleResponse(response) {
                 console.log(response);
                 let contentType = response.headers.get("content-type");
+
+                if (contentType && contentType.includes("json")) {
+                    return response.json();
+                }
+                throw new TypeError("Json error");
+            }
+            
+           
+               let str += '<table>';
                
-                            if(contentType && contentType.includes("json")) {
-                              return response.json();
-                            }
-                            throw new TypeError("Json error");
-                        }
-            function responseSuccess(json) {
-                let html = 'Data'; 
-                data = json;
-                html += `<b> Username       Email       Registered      is Active</b>`;
-                        for ( let index in data) {
-                            let formattedDate = new Date(data[index].registered).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' });
+               for (let i in json) {
+                  
+        str += `<tr id="$(i)"><td>${json[i].username}</td><td>${json[i].email}</td><td>${json[1].Registered}</td><td>${json[i].Active}</td></tr>'
+                    
+            str += `</table>`
+               }
+                    function responseSuccess(json) {
+                    let html = 'Data';
+                            data = json;
+                           
+                            html += `<b> Username       Email       Registered      is Active</b>`;
+                                                        for (let index in data) {
+                    let formattedDate = new Date(data[index].registered).toLocaleDateString("en-US", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'});
                             html += `<hr>`;
                             html += `<div data-index="${index}">`;
                             html += ` ${data[index].username} `
@@ -41,13 +54,18 @@
                             html += ` ${formattedDate} `
                             html += ` ${data[index].isActive} `
                             html += `</div>`
-                }
-                content.innerHTML = html;
-                function responseError(error) {
+                    }
+                    content.innerHTML = html;
+                    }
+            
+            function responseError(error) {
                 content.innerHTML = error;
+             
             }
-            }
-           
+        
         </script>
-    </body>
+        
+        
+
+        </body>
 </html>
