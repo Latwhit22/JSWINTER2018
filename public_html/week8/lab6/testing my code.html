@@ -6,20 +6,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
        
        <style>
+
 </style>
     </head>
     <body>
         <div></div>
         <script>
+
             var content = document.querySelector('div');
             var myRequest = 'users.json';
             var data = {};
+
             fetch(myRequest).then(handleResponse)
                     .then(responseSuccess)
                     .catch(responseError);
+
             function handleResponse(response) {
                 console.log(response);
                 let contentType = response.headers.get("content-type");
+
                 if (contentType && contentType.includes("json")) {
                     return response.json();
                 }
@@ -27,14 +32,9 @@
             }
             
            
-               let str += '<table>';
-               
-               for (let i in json) {
-                  
-        str += `<tr id="$(i)"><td>${json[i].username}</td><td>${json[i].email}</td><td>${json[1].Registered}</td><td>${json[i].Active}</td></tr>'
-                    
-            str += `</table>`
-               }
+            
+           
+    
                     function responseSuccess(json) {
                     let html = 'Data';
                             data = json;
@@ -55,11 +55,11 @@
             
             function responseError(error) {
                 content.innerHTML = error;
-             
             }
         
         </script>
         
         
+
         </body>
 </html>
