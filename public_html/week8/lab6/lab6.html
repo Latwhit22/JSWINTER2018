@@ -1,65 +1,61 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Lab 6</title>
+        <title>Lab 6 Ajax</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       
-       <style>
-</style>
+
+        <style>
+            table 
+            {
+                font-family: arial, times;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            td, th {
+                border: 4px solid #92a8d1;
+                text-align: left;
+                padding: 8px;
+            }
+            tr:nth-child(even) {
+                background-color: #d5f4e6;
+            }
+        </style>
+
     </head>
     <body>
-        <div></div>
+       
         <script>
-            var content = document.querySelector('div');
-            var myRequest = 'users.json';
-            var data = {};
-            fetch(myRequest).then(handleResponse)
-                    .then(responseSuccess)
-                    .catch(responseError);
-            function handleResponse(response) {
-                console.log(response);
-                let contentType = response.headers.get("content-type");
-                if (contentType && contentType.includes("json")) {
-                    return response.json();
-                }
-                throw new TypeError("Json error");
-            }
+
+
+            let content = document.querySelector('div')
+            let myRequest = 'users.json'
+            let body = document.querySelector('body')
+            let str = `<table>`;
             
-           
-               let str += '<table>';
-               
-               for (let i in json) {
-                  
-        str += `<tr id="$(i)"><td>${json[i].username}</td><td>${json[i].email}</td><td>${json[1].Registered}</td><td>${json[i].Active}</td></tr>'
+            fetch(myRequest)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (json)
+                    {
+                       
+                        
+                        str += `<tr><th>Username</th><th>Email</th><th>Registered</th><th>Active</th></tr>`;
                     
-            str += `</table>`
-               }
-                    function responseSuccess(json) {
-                    let html = 'Data';
-                            data = json;
-                           
-                            html += `<b> Username       Email       Registered      is Active</b>`;
-                                                        for (let index in data) {
-                    let formattedDate = new Date(data[index].registered).toLocaleDateString("en-US", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'});
-                            html += `<hr>`;
-                            html += `<div data-index="${index}">`;
-                            html += ` ${data[index].username} `
-                            html += ` <a href="mailto:${data[index].email}">${data[index].email}</a> `
-                            html += ` ${formattedDate} `
-                            html += ` ${data[index].isActive} `
-                            html += `</div>`
-                    }
-                    content.innerHTML = html;
-                    }
-            
-            function responseError(error) {
-                content.innerHTML = error;
-             
-            }
-        
+                        for (let i in json)
+                        {
+                            
+                        str += `<tr id="${i}"><td>${json[i].Username}</td><td><a href="mailto:${json[i].Email}" target="_top">${json[i].Email}</a></td><td>${json[i].Registered}</td><td>${json[i].Active}</td></tr>`;
+
+                        }
+                        str += `</table>`;
+                        body.innerHTML += str;
+                        console.log(json);
+                    });
+
+
         </script>
-        
-        
-        </body>
+  </body>
 </html>
+
