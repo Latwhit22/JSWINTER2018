@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mask Input</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+        <input type="text" name="Number" />
+</div>
+
+        <script>
+
+
+            let textField = document.querySelector('input[name="Number"]');
+            let textbox = document.querySelector('input[name="Number"]')
+            let save = "";
+
+            textbox.addEventListener('focus', checkInput)
+            textbox.addEventListener('blur', telFormat)
+
+            function checkInput()
+            {
+                textbox.value = save;
+            }
+
+            function telFormat()
+            {
+                let number = /([\d]{3})([\d]{2})([\d]{4})/g;
+                let compare = textbox.value.match(number);
+                save = textbox.value;
+
+
+                if (compare != null)
+                {
+                    textbox.value = textbox.value.replace(number, '###.##.$3');
+                }
+
+
+            }
+        </script>
+    </body>
+</html>
