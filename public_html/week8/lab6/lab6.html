@@ -11,8 +11,8 @@
     <body>
         <div></div>
         <script>
-            var content = document.querySelector('div');
-            var myRequest = 'users.json';
+            var content = document.querySelector('body');
+            var myRequest = 'ajax1.json';
             var data = {};
             fetch(myRequest).then(handleResponse)
                     .then(responseSuccess)
@@ -35,26 +35,13 @@
                     
             str += `</table>`
                }
-                    function responseSuccess(json) {
-                    let html = 'Data';
-                            data = json;
-                           
-                            html += `<b> Username       Email       Registered      is Active</b>`;
-                                                        for (let index in data) {
-                    let formattedDate = new Date(data[index].registered).toLocaleDateString("en-US", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'});
-                            html += `<hr>`;
-                            html += `<div data-index="${index}">`;
-                            html += ` ${data[index].username} `
-                            html += ` <a href="mailto:${data[index].email}">${data[index].email}</a> `
-                            html += ` ${formattedDate} `
-                            html += ` ${data[index].isActive} `
-                            html += `</div>`
+                   
                     }
-                    content.innerHTML = html;
+                    body.innerHTML = html;
                     }
             
             function responseError(error) {
-                content.innerHTML = error;
+                body.innerHTML = error;
              
             }
         
