@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Format input and Replace</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div></div>
+        <input type="text" name="Number">
+        <script>
+            
+         
+            let textField = document.querySelector('input[name="Number"]');
+            
+
+            let textbox = document.querySelector('input[name="Number"]')
+            textbox.addEventListener('keyup', checkInput)   
+            textbox.addEventListener('focus', checkInput)
+            textbox.addEventListener('blur', telFormat)
+
+            function checkInput() 
+            {
+                console.log(this.value);
+                this.value = this.value.replace(/[^0-9]+/g,"");
+                         
+            }
+            
+              function telFormat()  
+              {
+                console.log(this.value);
+                this.value = this.value.replace(/([\d]{3})([\d]{3})([\d]{4})/,'($1)$2.$3');
+
+              }
+                                     
+            
+            
+        </script>
+    </body>
+</html>
