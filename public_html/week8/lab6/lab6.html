@@ -44,7 +44,7 @@
                         for (let i in json)
                         {
                             
-                        str += `<tr id="${i}"><td>${json[i].Username}</td><td><a href="mailto:${json[i].Email}" target="_top">${json[i].Email}</a></td><td>${json[i].Registered}</td><td>${json[i].Active}</td></tr>`;
+                        str += `<tr id="${i}"><td>${json[i].username}</td><td><a href="mailto:${json[i].email}" target="_top">${json[i].email}</a></td><td>${json[i].registered}</td><td>${json[i].isActive}</td></tr>`;
                         }
                         str += `</table>`;
                         body.innerHTML += str;
